@@ -4,8 +4,8 @@ import { PATH } from "@/lib/path";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-primary/20">
-      <div className="text-center space-y-4">
+    <div className="flex my-auto items-center justify-center bg-primary/20 rounded-xl">
+      <div className="text-center space-y-4 h-full py-6">
         <h1 className="text-9xl font-bold text-primary">404</h1>
         <h2 className="text-3xl font-semibold">Page Not Found</h2>
         <p className="text-muted-foreground">

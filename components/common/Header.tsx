@@ -57,7 +57,7 @@ const Header = () => {
         <div className="flex items-center gap-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="flex items-center gap-2 rounded-full focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+              <button className="flex items-center gap-2 rounded-full focus:outline-none !focus:ring-0 focus:ring-ring focus:ring-offset-2">
                 <Avatar className="h-9 w-9 cursor-pointer transition-opacity hover:opacity-80">
                   <AvatarFallback className="bg-primary text-primary-foreground">
                     {getUserInitials()}

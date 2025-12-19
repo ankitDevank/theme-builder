@@ -118,23 +118,23 @@ export default function Dashboard({
       const newSection: Section =
         type === "hero"
           ? {
-              id: crypto.randomUUID(),
-              type: "hero",
-              heading: "Hero Heading",
-              subheading:
-                "Hero Subheading (Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua tempor incididunt ut labore et dolore magna aliqua )",
-            }
+            id: crypto.randomUUID(),
+            type: "hero",
+            heading: "Hero Heading",
+            subheading:
+              "Hero Subheading (Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua tempor incididunt ut labore et dolore magna aliqua )",
+          }
           : {
-              id: crypto.randomUUID(),
-              type: "card",
-              title: "Card Title",
-              description:
-                "Card description (Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua tempor incididunt ut labore et dolore magna aliqua )",
-              button1Text: "Learn More",
-              button1Link: "#",
-              button2Text: "Get Started",
-              button2Link: "#",
-            };
+            id: crypto.randomUUID(),
+            type: "card",
+            title: "Card Title",
+            description:
+              "Card description (Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua tempor incididunt ut labore et dolore magna aliqua )",
+            button1Text: "Learn More",
+            button1Link: "#",
+            button2Text: "Get Started",
+            button2Link: "#",
+          };
 
       setSections((prev) => [...prev, newSection]);
       return;
@@ -219,7 +219,7 @@ export default function Dashboard({
           {!isViewer && (
             <Button
               onClick={savePage}
-              className="fixed bottom-6 right-8 bg-primary hover:bg-primary-dark cursor-pointer text-white px-4 py-2 rounded shadow-lg"
+              className="fixed bottom-6 right-8"
               disabled={loading}
             >
               {loading ? (

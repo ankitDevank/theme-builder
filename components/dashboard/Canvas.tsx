@@ -10,6 +10,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { CanvasProps, Section, SortableItemProps } from "@/types/dashboard";
 import { ChangeEvent, JSX, useState } from "react";
 import { Pencil, Save, Trash } from "lucide-react";
+import Link from "next/link";
 
 function SortableItem({
   section,
@@ -66,9 +67,8 @@ function SortableItem({
           {canEdit && (
             <button
               onClick={() => setIsEditing(!isEditing)}
-              className={`text-sm rounded transition cursor-pointer ${
-                isEditing ? "text-green-600" : "text-blue-600"
-              }`}
+              className={`text-sm rounded transition cursor-pointer ${isEditing ? "text-green-600" : "text-blue-600"
+                }`}
             >
               {isEditing ? (
                 <Save className="size-4" />
@@ -211,24 +211,24 @@ function SortableItem({
               <div>
                 <div className="flex gap-3 pt-2">
                   {section.button1Text && (
-                    <a
+                    <Link
                       href={section.button1Link || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 transition text-sm font-medium"
                     >
                       {section.button1Text}
-                    </a>
+                    </Link>
                   )}
                   {section.button2Text && (
-                    <a
+                    <Link
                       href={section.button2Link || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-4 py-2 border outline-2 outline-gray-400 text-gary-400 rounded hover:bg-gray-100 transition text-sm font-medium"
                     >
                       {section.button2Text}
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
@@ -272,13 +272,12 @@ export default function Canvas({
           result.push(
             <div
               key={`card-group-${index}`}
-              className={`grid gap-4 ${
-                cardsPerRow === 1
+              className={`grid gap-4 ${cardsPerRow === 1
                   ? "grid-cols-1"
                   : cardsPerRow === 2
-                  ? "grid-cols-1 md:grid-cols-2"
-                  : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-              }`}
+                    ? "grid-cols-1 md:grid-cols-2"
+                    : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                }`}
             >
               {currentCardGroup.map((card) => (
                 <SortableItem
@@ -316,13 +315,12 @@ export default function Canvas({
       result.push(
         <div
           key={`card-group-final`}
-          className={`grid gap-4 ${
-            cardsPerRow === 1
+          className={`grid gap-4 ${cardsPerRow === 1
               ? "grid-cols-1"
               : cardsPerRow === 2
-              ? "grid-cols-1 md:grid-cols-2"
-              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          }`}
+                ? "grid-cols-1 md:grid-cols-2"
+                : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            }`}
         >
           {currentCardGroup.map((card) => (
             <SortableItem

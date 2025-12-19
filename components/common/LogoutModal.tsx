@@ -61,6 +61,7 @@ const LogoutModal = ({
               variant="outline"
               onClick={() => setIsLogoutDialogOpen(false)}
               disabled={isLoggingOut}
+              className="focus:ring-0"
             >
               Cancel
             </Button>
