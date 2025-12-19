@@ -2,9 +2,14 @@ import prisma from "@/lib/prisma";
 import { getAuthSession } from "@/lib/getSession";
 import Dashboard from "@/components/dashboard/Dashboard";
 import { PageConfig } from "@/types/builder";
+import { redirect } from "next/navigation";
 
 export default async function BuilderPage() {
   const session = await getAuthSession();
+
+  if (!session) {
+    redirect("/login");
+  }
 
   const currentUserId = session?.user.id ?? null;
   const currentUserRole = session?.user.role ?? null;

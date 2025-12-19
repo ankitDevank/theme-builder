@@ -1,14 +1,13 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./common/Header";
+import Footer from "./common/Footer";
 import { ReactNode } from "react";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
-  // Hide header and footer for login routes
   const isLoginRoute = pathname?.startsWith("/login");
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 
-import { useSession, signOut } from "next-auth/react";
+import { useState } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import {
   DropdownMenu,
@@ -9,17 +10,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
-} from "./ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "./ui/avatar";
+} from "../ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "../ui/avatar";
 import { LogOut, Users } from "lucide-react";
 import Link from "next/link";
+import LogoutModal from "./LogoutModal";
 
 const Header = () => {
   const { data: session } = useSession();
   const router = useRouter();
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
-  const handleLogout = async () => {
-    await signOut({ callbackUrl: "/login" });
+  const handleLogoutClick = () => {
+    setIsLogoutDialogOpen(true);
   };
 
   const handleUserList = () => {
@@ -87,7 +90,7 @@ const Header = () => {
                   </DropdownMenuItem>
                 )}
                 <DropdownMenuItem
-                  onClick={handleLogout}
+                  onClick={handleLogoutClick}
                   variant="destructive"
                   className="cursor-pointer"
                 >
@@ -99,6 +102,12 @@ const Header = () => {
           </DropdownMenu>
         </div>
       </div>
+      {isLogoutDialogOpen && (
+        <LogoutModal
+          isLogoutDialogOpen={isLogoutDialogOpen}
+          setIsLogoutDialogOpen={setIsLogoutDialogOpen}
+        />
+      )}
     </header>
   );
 };
