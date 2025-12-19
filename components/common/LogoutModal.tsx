@@ -11,6 +11,7 @@ import { Button } from "../ui/button";
 import { LogOut } from "lucide-react";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
+import { PATH } from "@/lib/path";
 
 const LogoutModal = ({
   isLogoutDialogOpen,
@@ -23,7 +24,7 @@ const LogoutModal = ({
 
   const handleLogoutConfirm = async () => {
     setIsLoggingOut(true);
-    await signOut({ callbackUrl: "/login" });
+    await signOut({ callbackUrl: PATH.LOGIN });
   };
 
   return (

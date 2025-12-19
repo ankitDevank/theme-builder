@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { PATH } from "./lib/path";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const token = await getToken({
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
@@ -11,15 +12,15 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isPublicPath =
-    pathname === "/login" || pathname.startsWith("/api/auth");
+    pathname === PATH.LOGIN || pathname.startsWith("/api/auth");
 
   if (!token && !isPublicPath) {
-    const loginUrl = new URL("/login", request.url);
+    const loginUrl = new URL(PATH.LOGIN, request.url);
     return NextResponse.redirect(loginUrl);
   }
 
-  if (token && pathname === "/login") {
-    return NextResponse.redirect(new URL("/", request.url));
+  if (token && pathname === PATH.LOGIN) {
+    return NextResponse.redirect(new URL(PATH.ROOT, request.url));
   }
 
   return NextResponse.next();

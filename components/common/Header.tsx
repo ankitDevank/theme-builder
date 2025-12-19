@@ -14,7 +14,12 @@ import {
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { LogOut, Users } from "lucide-react";
 import Link from "next/link";
-import LogoutModal from "./LogoutModal";
+import dynamic from "next/dynamic";
+import { PATH } from "@/lib/path";
+
+const LogoutModal = dynamic(() => import("./LogoutModal"), {
+  ssr: false,
+});
 
 const Header = () => {
   const { data: session } = useSession();
@@ -42,7 +47,7 @@ const Header = () => {
     <header className="fixed top-0 left-0 shadow right-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-primary/30">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center">
-          <Link href="/">
+          <Link href={PATH.ROOT}>
             <h1 className="text-xl font-semibold text-primary">
               Theme Builder
             </h1>

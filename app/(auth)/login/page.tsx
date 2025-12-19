@@ -8,6 +8,7 @@ import { loginSchema } from "@/lib/validator/auth";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PasswordInput } from "@/components/ui/password-input";
+import { PATH } from "@/lib/path";
 
 type Errors = {
   email?: string;
@@ -61,7 +62,7 @@ export default function LoginPage() {
     }
 
     toast.success("Login successful 🎉");
-    router.push("/");
+    router.push(PATH.ROOT);
     router.refresh();
     setIsLoading(false);
   }

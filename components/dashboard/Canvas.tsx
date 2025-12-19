@@ -7,7 +7,7 @@ import {
 } from "@dnd-kit/sortable";
 import { useDroppable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import { Section } from "@/types/builder";
+import { CanvasProps, Section, SortableItemProps } from "@/types/dashboard";
 import { ChangeEvent, JSX, useState } from "react";
 import { Pencil, Save, Trash } from "lucide-react";
 
@@ -18,14 +18,7 @@ function SortableItem({
   canEdit,
   canDelete,
   isDraggable,
-}: {
-  section: Section;
-  onUpdate: (id: string, data: Partial<Section>) => void;
-  onDelete: (id: string) => void;
-  canEdit: boolean;
-  canDelete: boolean;
-  isDraggable: boolean;
-}) {
+}: SortableItemProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -100,20 +93,30 @@ function SortableItem({
         <div className="space-y-2">
           {isEditing ? (
             <>
-              <input
-                value={section.heading}
-                onChange={(e) => handleChange("heading", e)}
-                onPointerDown={(e) => e.stopPropagation()}
-                className="w-full border rounded px-3 py-2 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Hero Heading"
-              />
-              <input
-                value={section.subheading}
-                onChange={(e) => handleChange("subheading", e)}
-                onPointerDown={(e) => e.stopPropagation()}
-                className="w-full border rounded px-3 py-2 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Hero Subheading"
-              />
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-gray-700">
+                  Hero Heading
+                </label>
+                <input
+                  value={section.heading}
+                  onChange={(e) => handleChange("heading", e)}
+                  onPointerDown={(e) => e.stopPropagation()}
+                  className="w-full border rounded px-3 py-2 text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Hero Heading"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-gray-700">
+                  Hero Subheading{" "}
+                </label>
+                <input
+                  value={section.subheading}
+                  onChange={(e) => handleChange("subheading", e)}
+                  onPointerDown={(e) => e.stopPropagation()}
+                  className="w-full border rounded px-3 py-2 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Hero Subheading"
+                />
+              </div>
             </>
           ) : (
             <>
@@ -210,7 +213,7 @@ function SortableItem({
                     href={section.button1Link || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm font-medium"
+                    className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 transition text-sm font-medium"
                   >
                     {section.button1Text}
                   </a>
@@ -241,14 +244,7 @@ export default function Canvas({
   canEditSections,
   canDeleteSections,
   isDraggable,
-}: {
-  sections: Section[];
-  setSections: React.Dispatch<React.SetStateAction<Section[]>>;
-  cardsPerRow: number;
-  canEditSections: boolean;
-  canDeleteSections: boolean;
-  isDraggable: boolean;
-}) {
+}: CanvasProps) {
   const { setNodeRef } = useDroppable({
     id: "canvas-droppable",
   });
@@ -344,7 +340,10 @@ export default function Canvas({
   };
 
   return (
-    <div ref={setNodeRef} className="flex-1 bg-gray-50 rounded-r-xl min-h-screen">
+    <div
+      ref={setNodeRef}
+      className="flex-1 bg-gray-50 rounded-r-xl min-h-screen"
+    >
       <SortableContext
         items={sections.map((s) => s.id)}
         strategy={verticalListSortingStrategy}

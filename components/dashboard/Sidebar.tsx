@@ -64,7 +64,7 @@ export default function Sidebar({
                 onClick={() => setCardsPerRow(n)}
                 className={`px-3 py-2 text-sm rounded transition cursor-pointer ${
                   cardsPerRow === n
-                    ? "bg-blue-600 text-white"
+                    ? "bg-primary text-white"
                     : "bg-gray-100 hover:bg-gray-200 text-gray-700"
                 }`}
               >

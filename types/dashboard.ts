@@ -55,3 +55,21 @@ export type DashboardProps = {
   initialConfig?: PageConfig | null;
   currentUserRole?: Role | null;
 };
+
+export type SortableItemProps = {
+  section: Section;
+  onUpdate: (id: string, data: Partial<Section>) => void;
+  onDelete: (id: string) => void;
+  canEdit: boolean;
+  canDelete: boolean;
+  isDraggable: boolean;
+};
+
+export type CanvasProps = {
+  sections: Section[];
+  setSections: React.Dispatch<React.SetStateAction<Section[]>>;
+  cardsPerRow: number;
+  canEditSections: boolean;
+  canDeleteSections: boolean;
+  isDraggable: boolean;
+};

@@ -1,9 +1,8 @@
 "use client";
 
 import { getBuilderForUser, saveBuilderForUser } from "@/app/actions/builder";
-import Canvas from "@/components/dashboard/Canvas";
 import Sidebar from "@/components/dashboard/Sidebar";
-import { Section, PageConfig, DashboardProps } from "@/types/builder";
+import { Section, PageConfig, DashboardProps } from "@/types/dashboard";
 import {
   Select,
   SelectContent,
@@ -24,6 +23,12 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { Role } from "@/lib/roles";
+import dynamic from "next/dynamic";
+
+const Canvas = dynamic(() => import("@/components/dashboard/Canvas"), {
+  ssr: false,
+  loading: () => <div className="flex justify-center w-full"> Loading</div>,
+});
 
 export default function Dashboard({
   users,

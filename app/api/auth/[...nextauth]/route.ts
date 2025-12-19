@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import prisma from "@/lib/prisma";
 import { verifyPassword } from "@/lib/auth";
+import { PATH } from "@/lib/path";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -58,7 +59,7 @@ export const authOptions: NextAuthOptions = {
   },
 
   pages: {
-    signIn: "/login",
+    signIn: PATH.LOGIN,
   },
 };
 

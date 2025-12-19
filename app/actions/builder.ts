@@ -2,9 +2,17 @@
 
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { PageConfig } from "@/types/builder";
+import { PageConfig } from "@/types/dashboard";
+import { PATH } from "@/lib/path";
+import { getAuthSession } from "@/lib/getSession";
 
 export async function saveBuilderForUser(userId: string, builderJson: any) {
+  const session = await getAuthSession();
+
+  if (session?.user?.role === "VIEWER") {
+    throw new Error("You have no right to perform this action");
+  }
+
   if (!userId) {
     throw new Error("User is required");
   }
@@ -20,7 +28,7 @@ export async function saveBuilderForUser(userId: string, builderJson: any) {
     },
   });
 
-  revalidatePath("/");
+  revalidatePath(PATH.ROOT);
 }
 
 export async function getBuilderForUser(

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { PATH } from "@/lib/path";
 
 export default function NotFound() {
   return (
@@ -12,7 +13,7 @@ export default function NotFound() {
         </p>
         <div className="pt-4">
           <Button asChild>
-            <Link href="/">Go Home</Link>
+            <Link href={PATH.ROOT}>Go Home</Link>
           </Button>
         </div>
       </div>
