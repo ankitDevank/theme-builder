@@ -1,4 +1,4 @@
-import { Role } from "@/lib/roles";
+import { Role } from "@/types/roles";
 
 export type SectionType = "hero" | "card";
 

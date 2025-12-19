@@ -14,12 +14,20 @@ export async function proxy(request: NextRequest) {
   const isPublicPath =
     pathname === PATH.LOGIN || pathname.startsWith("/api/auth");
 
+  /* -------------------- AUTH GUARD -------------------- */
   if (!token && !isPublicPath) {
     const loginUrl = new URL(PATH.LOGIN, request.url);
     return NextResponse.redirect(loginUrl);
   }
 
   if (token && pathname === PATH.LOGIN) {
+    return NextResponse.redirect(new URL(PATH.ROOT, request.url));
+  }
+
+  /* -------------------- ROLE GUARD -------------------- */
+  const isUserListPage = pathname.startsWith(PATH.USER_LIST);
+
+  if (isUserListPage && token?.role !== "ADMIN") {
     return NextResponse.redirect(new URL(PATH.ROOT, request.url));
   }
 

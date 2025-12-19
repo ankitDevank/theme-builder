@@ -107,7 +107,7 @@ function SortableItem({
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-semibold text-gray-700">
-                  Hero Subheading{" "}
+                  Hero Subheading
                 </label>
                 <input
                   value={section.subheading}
@@ -119,12 +119,12 @@ function SortableItem({
               </div>
             </>
           ) : (
-            <>
-              <h2 className="text-2xl font-bold text-gray-800">
+            <div className="py-20 px-5 bg-[linear-gradient(45deg,#FFB3D9_0%,#FFD1DC_20%,#FFF0F5_40%,#E6F3FF_60%,#D1E7FF_80%,#C7E9F1_100%)] rounded-xl space-y-5">
+              <h2 className="text-2xl font-bold text-gray-800 text-center">
                 {section.heading}
               </h2>
-              <p className="text-gray-600">{section.subheading}</p>
-            </>
+              <p className="text-gray-600 text-center">{section.subheading}</p>
+            </div>
           )}
         </div>
       )}
@@ -201,35 +201,38 @@ function SortableItem({
               </div>
             </>
           ) : (
-            <>
-              <h3 className="text-xl font-semibold text-gray-800">
-                {section.title}
-              </h3>
-              <p className="text-gray-600">{section.description}</p>
-
-              <div className="flex gap-3 pt-2">
-                {section.button1Text && (
-                  <a
-                    href={section.button1Link || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 transition text-sm font-medium"
-                  >
-                    {section.button1Text}
-                  </a>
-                )}
-                {section.button2Text && (
-                  <a
-                    href={section.button2Link || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition text-sm font-medium"
-                  >
-                    {section.button2Text}
-                  </a>
-                )}
+            <div className="bg-[radial-gradient(125%_125%_at_50%_90%,#fff_40%,#6366f1_100%)] p-3 rounded-xl flex flex-col gap-6 custom-box-shadow">
+              <div className="space-y-3">
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {section.title}
+                </h3>
+                <p className="text-gray-600">{section.description}</p>
               </div>
-            </>
+              <div>
+                <div className="flex gap-3 pt-2">
+                  {section.button1Text && (
+                    <a
+                      href={section.button1Link || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 transition text-sm font-medium"
+                    >
+                      {section.button1Text}
+                    </a>
+                  )}
+                  {section.button2Text && (
+                    <a
+                      href={section.button2Link || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 border outline-2 outline-gray-400 text-gary-400 rounded hover:bg-gray-100 transition text-sm font-medium"
+                    >
+                      {section.button2Text}
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
           )}
         </div>
       )}
@@ -342,15 +345,15 @@ export default function Canvas({
   return (
     <div
       ref={setNodeRef}
-      className="flex-1 bg-gray-50 rounded-r-xl min-h-screen"
+      className="flex-1 bg-gray-50 rounded-r-xl min-h-[calc(100vh-238px)]"
     >
       <SortableContext
         items={sections.map((s) => s.id)}
         strategy={verticalListSortingStrategy}
       >
-        <section className="p-6 space-y-4">
+        <section className="p-6 space-y-4 h-full">
           {sections.length === 0 && (
-            <div className="h-96 flex items-center justify-center text-gray-400 text-sm border-2 border-dashed rounded-lg bg-white/60">
+            <div className="h-full flex items-center justify-center text-gray-400 text-sm border-2 border-dashed rounded-lg bg-white/60">
               Drag sections from the left to start building your page
             </div>
           )}

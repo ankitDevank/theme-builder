@@ -2,23 +2,10 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate } from "@/lib/formatDate";
 import { getRoleBadgeColor } from "@/lib/getRoleBadgeColor";
-import { getAuthSession } from "@/lib/getSession";
-import { PATH } from "@/lib/path";
 import prisma from "@/lib/prisma";
 import { Users } from "lucide-react";
-import { redirect } from "next/navigation";
 
 const UsersPage = async () => {
-  const session = await getAuthSession();
-
-  if (!session) {
-    redirect(PATH.LOGIN);
-  }
-
-  if (session.user.role !== "ADMIN") {
-    redirect(PATH.ROOT);
-  }
-
   const users = await prisma.user.findMany({
     select: {
       id: true,

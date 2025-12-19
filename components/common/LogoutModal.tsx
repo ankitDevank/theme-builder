@@ -12,6 +12,7 @@ import { LogOut } from "lucide-react";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
 import { PATH } from "@/lib/path";
+import Loader from "./Loader";
 
 const LogoutModal = ({
   isLogoutDialogOpen,
@@ -70,17 +71,7 @@ const LogoutModal = ({
             >
               {isLoggingOut ? (
                 <>
-                  <motion.span
-                    animate={{ rotate: 360 }}
-                    transition={{
-                      duration: 1,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                    className="mr-2 inline-block"
-                  >
-                    ⏳
-                  </motion.span>
+                  <Loader />
                   Logging out...
                 </>
               ) : (

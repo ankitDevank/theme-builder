@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PasswordInput } from "@/components/ui/password-input";
 import { PATH } from "@/lib/path";
+import { motion } from "framer-motion";
+import Loader from "@/components/common/Loader";
 
 type Errors = {
   email?: string;
@@ -69,12 +71,20 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-primary/20">
-      <form
+      <motion.form
         onSubmit={onSubmit}
-        className="w-full max-w-md space-y-4 rounded-lg border bg-white p-6"
         noValidate
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="w-full max-w-md space-y-4 rounded-lg border bg-white p-6"
       >
-        <h1 className="text-xl font-semibold text-center">Login</h1>
+        <div>
+          <h1 className="text-xl font-semibold text-center">Login</h1>
+          <p className="text-sm px-5 text-center mt-2">
+            Enter your registered email and password to log in to your account.
+          </p>
+        </div>
 
         {/* Email */}
         <div>
@@ -106,9 +116,16 @@ export default function LoginPage() {
           disabled={isLoading}
           className="w-full cursor-pointer"
         >
-          {isLoading ? "Signing in..." : "Login"}
+          {isLoading ? (
+            <>
+              <Loader />
+              Signing in...
+            </>
+          ) : (
+            "Login"
+          )}
         </Button>
-      </form>
+      </motion.form>
     </div>
   );
 }

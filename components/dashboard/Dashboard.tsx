@@ -22,8 +22,9 @@ import { arrayMove } from "@dnd-kit/sortable";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
-import { Role } from "@/lib/roles";
+import { Role } from "@/types/roles";
 import dynamic from "next/dynamic";
+import Loader from "../common/Loader";
 
 const Canvas = dynamic(() => import("@/components/dashboard/Canvas"), {
   ssr: false,
@@ -120,7 +121,8 @@ export default function Dashboard({
               id: crypto.randomUUID(),
               type: "hero",
               heading: "Hero Heading",
-              subheading: "Hero Subheading",
+              subheading:
+                "Hero Subheading (Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua tempor incididunt ut labore et dolore magna aliqua )",
             }
           : {
               id: crypto.randomUUID(),
@@ -175,7 +177,7 @@ export default function Dashboard({
   return (
     <div>
       {!isViewer && (
-        <div className="mb-4 sm:mb-6 lg:mb-8 flex justify-end">
+        <div className="mb-3 flex justify-end">
           <Select
             value={selectedUserId}
             onValueChange={(value) => setSelectedUserId(value)}
@@ -220,7 +222,14 @@ export default function Dashboard({
               className="fixed bottom-6 right-8 bg-primary hover:bg-primary-dark cursor-pointer text-white px-4 py-2 rounded shadow-lg"
               disabled={loading}
             >
-              Save Page
+              {loading ? (
+                <>
+                  <Loader />
+                  Saving Page...
+                </>
+              ) : (
+                "Save Page"
+              )}
             </Button>
           )}
         </div>
