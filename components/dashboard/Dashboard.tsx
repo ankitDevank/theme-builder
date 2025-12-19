@@ -40,8 +40,6 @@ export default function Dashboard({
   );
   const [loading, setLoading] = useState(false);
 
-  console.log("initialUserId", initialUserId);
-
   const role: Role = currentUserRole ?? "VIEWER";
   const isViewer = role === "VIEWER";
   const isEditor = role === "EDITOR";
