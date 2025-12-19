@@ -91,7 +91,7 @@ export default function Dashboard({
         }
       } catch (err) {
         if (!cancelled) {
-          toast.error("Failed to load saved theme");
+          toast.error("Failed to load saved page");
         }
       } finally {
         if (!cancelled) {
@@ -166,9 +166,9 @@ export default function Dashboard({
     setLoading(true);
     try {
       await saveBuilderForUser(selectedUserId, builderJson);
-      toast.success("Theme saved successfully");
+      toast.success("Page saved successfully");
     } catch (err) {
-      toast.error("Failed to save theme");
+      toast.error("Failed to save page");
     } finally {
       setLoading(false);
     }

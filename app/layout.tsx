@@ -5,8 +5,8 @@ import { Toaster } from "sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Theme Builder",
-  description: "Theme builder for your website",
+  title: "Page Builder",
+  description: "Page builder for your website",
 };
 
 export default function RootLayout({

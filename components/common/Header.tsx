@@ -49,7 +49,7 @@ const Header = () => {
         <div className="flex items-center">
           <Link href={PATH.ROOT}>
             <h1 className="text-xl font-semibold text-primary">
-              Theme Builder
+              Page Builder
             </h1>
           </Link>
         </div>

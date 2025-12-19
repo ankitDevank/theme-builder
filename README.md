@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Page Builder
 
-## Getting Started
+A modern, powerful web application for building and managing Page with a dynamic, logic-driven interface. Built with Next.js 16, Prisma, and Tailwind CSS 4.
 
-First, run the development server:
+## 🚀 Tech Stack
 
+- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
+- **Database**: [PostgreSQL](https://www.postgresql.org/) with [Prisma ORM 7](https://www.prisma.io/)
+- **Authentication**: [Next-Auth](https://next-auth.js.org/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Components**: [Radix UI](https://www.radix-ui.com/) & [Lucide React](https://lucide.dev/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Testing**: [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+
+## 🛠️ Prerequisites
+
+Before you begin, ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v20 or higher recommended)
+- [PostgreSQL](https://www.postgresql.org/) database
+
+## 📦 Installation & Setup
+
+Follow these steps to get the project running locally:
+
+### 1. Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Environment Variables
+Create a `.env` file in the `page-builder` directory and add the following variables:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+DATABASE_URL="postgresql://username:password@localhost:5432/theme_builder_db?schema=public"
+NEXTAUTH_SECRET="your-secret-key"
+NEXTAUTH_URL="http://localhost:3000"
+SHOULD_SEED="true"
+```
+> [!TIP]
+> You can generate a secret key using `openssl rand -base64 32`.
 
-## Learn More
+### 4. Database Initialization
+Run the following commands to set up your database schema and seed initial data:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Generate Prisma Client
+npm run db:generate
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Run migrations
+npm run db:migrate
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Seed the database
+npm run db:seed
+```
 
-## Deploy on Vercel
+## 🏃 Running the Project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Development Mode
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to see the application.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Production Build
+```bash
+npm run build
+npm run start
+```
+
+## 🧪 Testing
+
+Run the test suite using Jest:
+```bash
+npm run test
+```
+
+## 📂 Project Structure
+
+- `app/`: Next.js App Router pages and API routes.
+- `components/`: Reusable UI components.
+- `lib/`: Utility functions and shared logic (Prisma client, Auth).
+- `prisma/`: Database schema and seed scripts.
+- `types/`: TypeScript type definitions.
+- `public/`: Static assets.
+
+## 👥 Seed Accounts
+
+After seeding, you can log in with the following default accounts (all passwords are `password@123`):
+
+- **Admin**: `admin@test.com`
+- **Editor**: `editor1@test.com`, `editor2@test.com`
+- **User**: `user1@test.com`, `user2@test.com`

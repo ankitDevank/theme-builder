@@ -168,7 +168,7 @@ describe("Dashboard", () => {
                     sections: []
                 })
             );
-            expect(toast.success).toHaveBeenCalledWith("Theme saved successfully");
+            expect(toast.success).toHaveBeenCalledWith("Page saved successfully");
             expect(screen.getByRole("button", { name: /save page/i })).not.toBeDisabled();
         });
     });
@@ -190,7 +190,7 @@ describe("Dashboard", () => {
         await user.click(saveBtn);
 
         await waitFor(() => {
-            expect(toast.error).toHaveBeenCalledWith("Failed to save theme");
+            expect(toast.error).toHaveBeenCalledWith("Failed to save page");
         });
     });
 });
