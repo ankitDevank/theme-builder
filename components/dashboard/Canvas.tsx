@@ -1,9 +1,9 @@
 "use client";
 
 import {
+  rectSortingStrategy,
   SortableContext,
   useSortable,
-  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { useDroppable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
@@ -67,8 +67,9 @@ function SortableItem({
           {canEdit && (
             <button
               onClick={() => setIsEditing(!isEditing)}
-              className={`text-sm rounded transition cursor-pointer ${isEditing ? "text-green-600" : "text-blue-600"
-                }`}
+              className={`text-sm rounded transition cursor-pointer ${
+                isEditing ? "text-green-600" : "text-blue-600"
+              }`}
             >
               {isEditing ? (
                 <Save className="size-4" />
@@ -272,12 +273,13 @@ export default function Canvas({
           result.push(
             <div
               key={`card-group-${index}`}
-              className={`grid gap-4 ${cardsPerRow === 1
+              className={`grid gap-4 ${
+                cardsPerRow === 1
                   ? "grid-cols-1"
                   : cardsPerRow === 2
-                    ? "grid-cols-1 md:grid-cols-2"
-                    : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-                }`}
+                  ? "grid-cols-1 md:grid-cols-2"
+                  : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+              }`}
             >
               {currentCardGroup.map((card) => (
                 <SortableItem
@@ -315,12 +317,13 @@ export default function Canvas({
       result.push(
         <div
           key={`card-group-final`}
-          className={`grid gap-4 ${cardsPerRow === 1
+          className={`grid gap-4 ${
+            cardsPerRow === 1
               ? "grid-cols-1"
               : cardsPerRow === 2
-                ? "grid-cols-1 md:grid-cols-2"
-                : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-            }`}
+              ? "grid-cols-1 md:grid-cols-2"
+              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          }`}
         >
           {currentCardGroup.map((card) => (
             <SortableItem
@@ -347,7 +350,7 @@ export default function Canvas({
     >
       <SortableContext
         items={sections.map((s) => s.id)}
-        strategy={verticalListSortingStrategy}
+        strategy={rectSortingStrategy}
       >
         <section className="p-6 space-y-4 h-full">
           {sections.length === 0 && (

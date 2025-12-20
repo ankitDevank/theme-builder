@@ -95,3 +95,24 @@ After seeding, you can log in with the following default accounts (all passwords
 - **Admin**: `admin@test.com`
 - **Editor**: `editor1@test.com`, `editor2@test.com`
 - **User**: `user1@test.com`, `user2@test.com`
+
+## Flow of Project
+1. User Authentication
+- The user logs in with valid credentials.
+- After login:
+    - If a page already exists for the user in the database, it is loaded and displayed.
+    - If no page exists, an empty canvas is shown.
+
+2. Role-Based Page Management
+- Admin and Editor roles can:
+    - Select a user from a dropdown list.
+    - Configure and customize the page theme for the selected user.
+
+3. Viewer Access
+- Viewer role users can:
+    - View only their own page.
+    - They do not have permission to edit or manage other users’ pages.
+
+4. User Management Access
+   - Admin role has access to the user list and user management features.
+   - Editor and Viewer roles do not have access to the user list page.
