@@ -28,6 +28,9 @@ jobs:
       - name: Generate Prisma Client
         run: npx prisma generate
 
+      - name: Run test cases 
+        run: npm test
+
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
